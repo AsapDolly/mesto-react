@@ -1,0 +1,8 @@
+.element__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    margin: 21px 21px 0 21px;
+}
