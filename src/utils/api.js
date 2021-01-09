@@ -9,7 +9,7 @@ class Api {
             return res.json();
         }
 
-        return Promise.reject("Произошла ошибка");
+        return Promise.reject(`Произошла ошибка: ${res.status}`);
     }
 
     getUserInformation() {
@@ -18,6 +18,7 @@ class Api {
             headers: this._headers
         })
             .then((res) => this._checkResult(res))
+            .catch(err => console.log(`Загрузка информации о пользователе: ${err}`));
     }
 
     getInitialCards() {
@@ -26,6 +27,7 @@ class Api {
             headers: this._headers
         })
             .then((res) => this._checkResult(res))
+            .catch(err => console.log(`Загрузка начального набора карточек: ${err}`));
     }
 
     updateUserInfo({name, about}) {
@@ -38,6 +40,7 @@ class Api {
             })
         })
             .then((res) => this._checkResult(res))
+            .catch(err => console.log(`Обновить информацию о пользователе: ${err}`));
     }
 
     addNewCard({name, link}) {
@@ -50,6 +53,7 @@ class Api {
             })
         })
             .then((res) => this._checkResult(res))
+            .catch(err => console.log(`Добавление новой карточки: ${err}`));
     }
 
     removeCard(cardId){
@@ -58,6 +62,7 @@ class Api {
             headers: this._headers
         })
             .then((res) => this._checkResult(res))
+            .catch(err => console.log(`Удаление карточки: ${err}`));
     }
 
     setCardLike(cardId, isLiked){
@@ -66,6 +71,7 @@ class Api {
             headers: this._headers
         })
             .then((res) => this._checkResult(res))
+            .catch(err => console.log(`Нажатие на лайк карточки: ${err}`));
     }
 
     updateUserAvatar(url){
@@ -77,6 +83,7 @@ class Api {
             })
         })
             .then((res) => this._checkResult(res))
+            .catch(err => console.log(`Обновление аватара пользователя: ${err}`));
     }
 }
 

@@ -17,53 +17,49 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
                 setUserDescription(res.about);
                 setUserAvatar(res.avatar);
             })
-            .then(()=>{
-                api.getInitialCards()
-                    .then((result) => {
-                        setCards(result);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            })
             .catch((err) => {
                 console.log(err);
+            });
+        api.getInitialCards()
+            .then((result) => {
+                setCards(result);
+            })
+            .catch((error) => {
+                console.log(error);
             });
     }, []);
 
     return (
-        <>
-            <main className="content">
-                <section className="profile">
+        <main className="content">
+            <section className="profile">
 
-                    <div className="profile__userinfo">
-                        <div className="profile__avatar-overlay" onClick={onEditAvatar}/>
-                        <div className="profile__avatar"
-                             style={{backgroundImage: `url(${userAvatar})`}}
-                        />
+                <div className="profile__userinfo">
+                    <div className="profile__avatar-overlay" onClick={onEditAvatar}/>
+                    <div className="profile__avatar"
+                         style={{backgroundImage: `url(${userAvatar})`}}
+                    />
 
-                        <div className="profile__user-description">
-                            <div className="profile__username-edit">
-                                <h1 className="profile__username">{userName}</h1>
-                                <button className="profile__edit-button" type="button" onClick={onEditProfile}>
-                                    <img alt="редактировать" src={editButtonImage}/>
-                                </button>
-                            </div>
-                            <p className="profile__description">{userDescription}</p>
+                    <div className="profile__user-description">
+                        <div className="profile__username-edit">
+                            <h1 className="profile__username">{userName}</h1>
+                            <button className="profile__edit-button" type="button" onClick={onEditProfile}>
+                                <img alt="редактировать" src={editButtonImage}/>
+                            </button>
                         </div>
+                        <p className="profile__description">{userDescription}</p>
                     </div>
+                </div>
 
-                    <button className="profile__add-button" type="button" onClick={onAddPlace}>
-                        <img alt="добавить" src={addButtonImage}/>
-                    </button>
-                </section>
+                <button className="profile__add-button" type="button" onClick={onAddPlace}>
+                    <img alt="добавить" src={addButtonImage}/>
+                </button>
+            </section>
 
-                <section className="elements">
-                    {cards.map(({_id, ...props}) => <Card key={_id} { ...props } onCardClick = {onCardClick}/>)}
-                </section>
+            <section className="elements">
+                {cards.map(({_id, ...props}) => <Card key={_id} {...props} onCardClick={onCardClick}/>)}
+            </section>
 
-            </main>
-        </>
+        </main>
     );
 }
 
