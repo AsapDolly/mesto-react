@@ -15,9 +15,6 @@ function App() {
     const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true);
     const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true);
     const handleCardClick = (card) => setSelectedCard(card);
-    let popupTitle = '';
-    let name = '';
-    let children = '';
 
     const closeAllPopups = () => {
         setIsEditProfilePopupOpen(false);
@@ -26,28 +23,31 @@ function App() {
         setSelectedCard({});
     }
 
-    if (isEditAvatarPopupOpen) {
-        popupTitle = 'Обновить аватар';
-        name = 'avatar-edit';
-        children = (
-            <label className="popup__field">
-                <input className="popup__input popup__input-text_type_link"
-                       id="avatar-url-input"
-                       name="link"
-                       placeholder="Ссылка на изображение"
-                       type="url"
-                       required
-                />
-                <span className='popup__error' id='avatar-url-input-error'/>
-            </label>
-        );
-    }
+    return (
+        <div className="page">
+            <PopupWithForm
+                title='Обновить аватар'
+                name='avatar-edit'
+                isOpen={isEditAvatarPopupOpen}
+                onClose={closeAllPopups}>
+                <label className="popup__field">
+                    <input className="popup__input popup__input-text_type_link"
+                           id="avatar-url-input"
+                           name="link"
+                           placeholder="Ссылка на изображение"
+                           type="url"
+                           required
+                    />
+                    <span className='popup__error' id='avatar-url-input-error'/>
+                </label>
+            </PopupWithForm>
 
-    if (isEditProfilePopupOpen) {
-        popupTitle = 'Редактировать профиль';
-        name = 'edit-profile';
-        children = (
-            <>
+            <PopupWithForm
+                title='Редактировать профиль'
+                name='edit-profile'
+                isOpen={isEditProfilePopupOpen}
+                onClose={closeAllPopups}
+            >
                 <label className="popup__field">
                     <input className="popup__input popup__input-text_type_username"
                            id="username-input"
@@ -73,15 +73,14 @@ function App() {
                     />
                     <span className='popup__error' id='description-input-error'/>
                 </label>
-            </>
-        );
-    }
+            </PopupWithForm>
 
-    if (isAddPlacePopupOpen) {
-        popupTitle = 'Новое место';
-        name = 'new-place';
-        children = (
-            <>
+            <PopupWithForm
+                title='Новое место'
+                name='new-place'
+                isOpen={isAddPlacePopupOpen}
+                onClose={closeAllPopups}
+            >
                 <label className="popup__field">
                     <input className="popup__input popup__input-text_type_name"
                            id="placename-input"
@@ -105,19 +104,6 @@ function App() {
                     />
                     <span className='popup__error' id='url-input-error'/>
                 </label>
-            </>
-        );
-    }
-
-    return (
-        <div className="page">
-            <PopupWithForm
-                title={popupTitle}
-                name={name}
-                isOpen={isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen}
-                onClose={closeAllPopups}
-            >
-                {children}
             </PopupWithForm>
 
             <ImagePopup

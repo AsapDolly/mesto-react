@@ -10,7 +10,7 @@ function Card({ name, link, likes, onCardClick }){
         <div className="element">
             <button className="element__trash" type="button"/>
             <div className="element__image-area">
-                <img className="element__image" onClick={handleClick} style={{ backgroundImage: `url(${link})` }}/>
+                <img className="element__image" alt={name} src={link} onClick={handleClick}/>
             </div>
             <div className="element__row">
                 <p className="element__caption">{name}</p>
