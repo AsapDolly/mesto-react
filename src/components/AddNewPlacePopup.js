@@ -27,6 +27,7 @@ function AddNewPlacePopup({isAddPlacePopupOpen, closeAllPopups, onAddNewPlace}){
             title='Новое место'
             name='new-place'
             isOpen={isAddPlacePopupOpen}
+            buttonText='Создать'
             onClose={closeAllPopups}
             onSubmit={handleAddPlaceSubmit}
         >

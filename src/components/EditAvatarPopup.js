@@ -16,6 +16,7 @@ function EditAvatarPopup({isEditAvatarPopupOpen, closeAllPopups, onUpdateAvatar}
             title='Обновить аватар'
             name='avatar-edit'
             isOpen={isEditAvatarPopupOpen}
+            buttonText='Сохранить'
             onClose={closeAllPopups}
             onSubmit={handleSubmit}>
 
